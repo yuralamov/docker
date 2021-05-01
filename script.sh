@@ -17,6 +17,7 @@ mkswap $swapfl
 swapon $swapfl
 
 # Настройка сети
+netfl=`ls /etc/netplan/`
 {
 echo 'network:'
 echo '  ethernets:'
@@ -32,7 +33,7 @@ echo '        - 8.8.8.8'
 echo '        search:'
 echo '        - WORKGROUP'
 echo '  version: 2'
-} > /etc/netplan/netplan.yaml
+} > /etc/netplan/$netfl
 netplan generate
 netplan --debug apply
 
