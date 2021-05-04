@@ -1,7 +1,7 @@
 #! /bin/bash
 
 sudo su
-apt install -y preload ssh ufw fail2ban install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+apt install -y preload ssh ufw fail2ban apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
 
 # смена имени
 hostnamectl set-hostname docker
