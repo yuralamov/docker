@@ -38,6 +38,12 @@ docker exec -it sql2017 mkdir /var/opt/mssql/backup
 docker exec -it sql2017 /opt/mssql/bin/mssql-conf set sqlagent.enabled true
 docker restart sql2017
 
+# Установка Postgresql
+docker pull postgres
+docker volume create postgres_data
+docker run --name postgres -h postgres -p 5433:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=User@123 -e POSTGRES_DB=testdb -e PGDATA=/var/lib/postgresql/data/pgdata -d -v postgres_data:/var/lib/postgresql/data postgres
+docker exec -it postgres psql -U user -W postgres
+
 exit
 sudo usermod -aG docker $(whoami)
 sudo reboot
