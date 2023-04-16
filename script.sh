@@ -44,6 +44,18 @@ docker volume create postgres_data
 docker run --name postgres -h postgres -p 5433:5432 -e POSTGRES_USER=user -e POSTGRES_PASSWORD=User@123 -e POSTGRES_DB=testdb -e PGDATA=/var/lib/postgresql/data/pgdata -d -v postgres_data:/var/lib/postgresql/data postgres
 docker exec -it postgres psql -U user -W testdb
 
-exit
+# Установка MySQL
+docker pull mysql/mysql-server:latest
+docker volume create mysql_data
+docker run --name=mysql --hostname=mysql -p 33306:3306 -v mysql_data:/var/lib/mysql/ -d mysql/mysql-server:latest
+# Сменить пароль root и создать пользователя с супер правами
+## docker logs mysql | grep 'GENERATED ROOT PASSWORD:'
+## docker exec -it mysql mysql -uroot -p
+## ALTER USER ‘root’@’localhost’ IDENTIFIED BY ‘Flvby@123’;
+## CREATE USER 'user' IDENTIFIED BY 'User@123';
+## GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
+## FLUSH PRIVILEGES;
+## exit
+
 sudo usermod -aG docker $(whoami)
 sudo reboot
