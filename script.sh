@@ -51,7 +51,7 @@ docker run --name=mysql --hostname=mysql -p 33306:3306 -v mysql_conf:/etc/mysql/
 # Сменить пароль root и создать пользователя с супер правами
 ## docker logs mysql | grep 'GENERATED ROOT PASSWORD:'
 ## docker exec -it mysql mysql -uroot -p
-## ALTER USER ‘root’@’localhost’ IDENTIFIED BY ‘Flvby@123’;
+## ALTER USER 'root'@'localhost' IDENTIFIED BY 'Flvby@123';
 ## CREATE USER 'user' IDENTIFIED BY 'User@123';
 ## GRANT ALL PRIVILEGES ON *.* TO 'user'@'%' WITH GRANT OPTION;
 ## FLUSH PRIVILEGES;
