@@ -33,7 +33,7 @@ docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /va
 # Установка MS SQL Server 2017
 docker pull mcr.microsoft.com/mssql/server:2017-latest
 docker volume create sql2017
-docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Flvby@123" -p 1433:1433 -v sql2017:/var/opt/mssql --name sql2017 -h sql2017 -d mcr.microsoft.com/mssql/server:2017-latest
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Flvby@123" -p 1433:1433 -e 'MSSQL_PID=Developer' -v sql2017:/var/opt/mssql --name sql2017 -h sql2017 -d mcr.microsoft.com/mssql/server:2017-latest
 docker exec -it sql2017 mkdir /var/opt/mssql/backup
 docker exec -it sql2017 /opt/mssql/bin/mssql-conf set sqlagent.enabled true
 docker restart sql2017
