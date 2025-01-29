@@ -46,10 +46,10 @@ docker exec -it postgres psql -U user -W testdb
 
 # Установка MySQL
 docker pull mysql/mysql-server:latest
-docker volume create mysql_data && docker volume create mysql_conf && docker volume create mysql_logs
-docker run --name=mysql --hostname=mysql -p 3306:3306  -e MYSQL_ROOT_PASSWORD=Flvby@123 -v mysql_conf:/etc/mysql/mysql.conf.d/ -v mysql_data:/var/lib/mysql/ -v mysql_logs:/var/log/ -d mysql/mysql-server:latest
+docker volume create mysql_data
+docker run --name=mysql --hostname=mysql -p 3306:3306 -e MYSQL_DATABASE=dev -e MYSQL_USER=root -e MYSQL_PASSWORD=root -e MYSQL_ROOT_PASSWORD=root -v mysql_data:/var/lib/mysql/ -d mysql/mysql-server:latest
 # Сменить пароль root и создать пользователя с супер правами
-## docker logs mysql | grep 'GENERATED ROOT PASSWORD:'
+## docker logs mysql
 ## docker exec -it mysql mysql -uroot -p
 ## ALTER USER 'root'@'localhost' IDENTIFIED BY 'Flvby@123';
 ## CREATE USER 'user' IDENTIFIED BY 'User@123';
